@@ -1,14 +1,25 @@
 package config
 
-import "log"
+import (
+	"log"
+)
 
 type serverConfig struct {
 	Env string
 	LogFile string
 }
 
+type dbConfig struct {
+	URL string
+	UserName string
+	Password string
+}
+
+
 
 var ServerConfig serverConfig
+
+var MongoConfig dbConfig
 
 
 func initServer(){
@@ -20,6 +31,18 @@ func initServer(){
 	}
 }
 
+func initMongo()  {
+	log.Println("init mongo...")
+
+	MongoConfig = dbConfig{
+		URL:"",
+		UserName:"",
+		Password:"",
+	}
+
+}
+
 func init() {
 	initServer()
+	initMongo()
 }
