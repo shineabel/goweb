@@ -28,6 +28,10 @@
   branch = "master"
   name = "github.com/gin-gonic/gin"
 
+[[constraint]]
+name = "github.com/jinzhu/gorm"
+version = "1.0.0"
+
 [prune]
   go-tests = true
   unused-packages = true

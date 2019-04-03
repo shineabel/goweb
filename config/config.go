@@ -10,9 +10,13 @@ type serverConfig struct {
 }
 
 type dbConfig struct {
+	Host string
+	Port string
 	URL string
 	UserName string
 	Password string
+	Dialect string
+	Database string
 }
 
 
@@ -38,6 +42,10 @@ func initMongo()  {
 		URL:"",
 		UserName:"",
 		Password:"",
+		Host:"",
+		Port:"",
+		Dialect:"",
+		Database:"",
 	}
 
 }

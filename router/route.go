@@ -7,5 +7,5 @@ import (
 
 func Route(e *gin.Engine)  {
 
-	e.GET("/fetch",user.Save)
+	e.GET("/save",user.Save)
 }
