@@ -19,12 +19,22 @@ type dbConfig struct {
 	Database string
 }
 
+type mailConfig struct {
+	Host string
+	Port string
+	Email string
+	From string
+	ContentType string
+	Pwd string
+}
+
 
 
 var ServerConfig serverConfig
 
 var MysqlConfig dbConfig
 
+var MailConfig mailConfig
 
 func initServer(){
 
@@ -40,17 +50,16 @@ func initMysql()  {
 
 	MysqlConfig = dbConfig{
 		URL:"root:shine@tcp(localhost:3306)/test?charset=utf8",
-		UserName:"root",
-		Password:"shine",
-		Host:"localhost",
-		Port:"3306",
 		Dialect:"mysql",
-		Database:"test",
 	}
+	}
+
+func initMail()  {
 
 }
 
 func init() {
 	initServer()
 	initMysql()
+	initMail()
 }

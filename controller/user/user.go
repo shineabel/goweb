@@ -6,6 +6,7 @@ import (
 	"github.com/goweb/model"
 	"github.com/goweb/db"
 	"net/http"
+	"github.com/goweb/common"
 )
 
 func Save(c *gin.Context)  {
@@ -19,6 +20,7 @@ func Save(c *gin.Context)  {
 
 	if err := db.DB.Where(" name = ?", name).Find(&u).Error; err == nil {
 		fmt.Printf("sorry,user name %s exist.\n", name)
+		common.SendErrorJson("user " + name + " exist",c)
 		return
 	}
 	u.Name = name
@@ -28,9 +30,18 @@ func Save(c *gin.Context)  {
 		fmt.Errorf("insert user error",err)
 		return
 	}
+	go func() {
+		sendEmail(name, "New user active")
+	}()
+
 	c.JSON(http.StatusOK,gin.H{
 		"result":"OK",
 	})
+}
+
+func sendEmail(name string, title string)  {
+
+
 }
 
 func GetUserList(c *gin.Context)  {
