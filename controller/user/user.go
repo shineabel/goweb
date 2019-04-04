@@ -32,3 +32,17 @@ func Save(c *gin.Context)  {
 		"result":"OK",
 	})
 }
+
+func GetUserList(c *gin.Context)  {
+
+
+	var userList  []model.User
+
+	if err := db.DB.Find(&userList).Error; err != nil {
+		fmt.Println("query user list error")
+	}
+
+	c.JSON(http.StatusOK,gin.H{
+		"result":userList,
+	})
+}
