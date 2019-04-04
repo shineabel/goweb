@@ -12,6 +12,7 @@ import (
 func Save(c *gin.Context)  {
 	name := c.Query("name")
 	pwd := c.Query("password")
+	email := c.Query("email")
 	fmt.Printf("save user %s in controller\n",name)
 
 
@@ -31,7 +32,7 @@ func Save(c *gin.Context)  {
 		return
 	}
 	go func() {
-		sendEmail(name, "New user active")
+		sendEmail(email, "New user active","please active your account")
 	}()
 
 	c.JSON(http.StatusOK,gin.H{
@@ -39,9 +40,10 @@ func Save(c *gin.Context)  {
 	})
 }
 
-func sendEmail(name string, title string)  {
+func sendEmail(to string, title string, content string)  {
 
 
+	common.SendMail(to,title,content)
 }
 
 func GetUserList(c *gin.Context)  {

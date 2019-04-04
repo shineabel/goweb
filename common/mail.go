@@ -31,7 +31,7 @@ func SendMail(to string, title string, content string) error {
 	auth := smtp.PlainAuth("",mail, pwd,host)
 
 
-	err := sendEmailUseTLS(fmt.Sprintf("%s:%d", host, port), auth,mail,[]string{to},title)
+	err := sendEmailUseTLS(fmt.Sprintf("%s:%d", host, port), auth,mail,[]string{to},content)
 	return err
 
 }

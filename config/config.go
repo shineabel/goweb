@@ -55,7 +55,13 @@ func initMysql()  {
 	}
 
 func initMail()  {
-
+	MailConfig = mailConfig{
+		Host:"smtp.qq.com",
+		Port:465,
+		From:"",
+		Email:"531088309@qq.com",
+		Pwd:"uvjxhphjlyjcbifj",
+	}
 }
 
 func init() {
