@@ -5,7 +5,11 @@ import (
 	"github.com/goweb/controller/user"
 )
 
-func Route(e *gin.Engine)  {
+func Route(r *gin.Engine)  {
 
-	e.GET("/save",user.Save)
+
+	e := r.Group("/user")
+	{
+		e.POST("/save",user.Save)
+	}
 }

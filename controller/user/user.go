@@ -5,27 +5,30 @@ import (
 	"fmt"
 	"github.com/goweb/model"
 	"github.com/goweb/db"
+	"net/http"
 )
 
 func Save(c *gin.Context)  {
-	fmt.Println("save user %s in controller",c.Param("name"))
+	name := c.Query("name")
+	pwd := c.Query("password")
+	fmt.Printf("save user %s in controller\n",name)
 
-	//type UserData struct {
-	//	Name string `json:"name" binding:"required"`
-	//	Password string `json:"password" binding:"required"`
-	//}
-	//var ud UserData
-	//if err := c.ShouldBindWith(&ud, binding.JSON); err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
+
 	var u model.User
 
 
-	if err := db.DB.Where(" name = ?", c.Param("name")).Find(&u).Error; err == nil {
-		fmt.Println("sorry,user name %s exist.", u.Name)
-	} else {
-		fmt.Println("error occured:", err)
+	if err := db.DB.Where(" name = ?", name).Find(&u).Error; err == nil {
+		fmt.Printf("sorry,user name %s exist.\n", name)
+		return
 	}
+	u.Name = name
+	u.Password = pwd
 
+	if err := db.DB.Create(&u).Error; err != nil {
+		fmt.Errorf("insert user error",err)
+		return
+	}
+	c.JSON(http.StatusOK,gin.H{
+		"result":"OK",
+	})
 }

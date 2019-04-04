@@ -9,6 +9,7 @@ import (
 	"io"
 	"github.com/goweb/router"
 	_ "github.com/goweb/db"
+	"github.com/goweb/middleware"
 )
 func main() {
 
@@ -29,6 +30,7 @@ func main() {
 	app := gin.New()
 	app.Use(gin.Logger())
 	app.Use(gin.Recovery())
+	app.Use(middleware.Auth)
 	router.Route(app)
 
 	app.Run(":8081")
