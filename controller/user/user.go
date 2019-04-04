@@ -46,3 +46,16 @@ func GetUserList(c *gin.Context)  {
 		"result":userList,
 	})
 }
+
+func GetUserById( c *gin.Context)  {
+	id := c.Param("id")
+	var u model.User
+	if err := db.DB.Where(" id = ?", id).First(&u).Error; err != nil {
+		fmt.Println("query user by id error",err)
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"result":u,
+		"count":1,
+	})
+
+}

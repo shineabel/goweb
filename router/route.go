@@ -12,5 +12,6 @@ func Route(r *gin.Engine)  {
 	{
 		e.POST("/save",user.Save)
 		e.GET("/", user.GetUserList)
+		e.GET("/:id", user.GetUserById)
 	}
 }
