@@ -21,7 +21,7 @@ type dbConfig struct {
 
 type mailConfig struct {
 	Host string
-	Port string
+	Port int
 	Email string
 	From string
 	ContentType string
