@@ -23,34 +23,34 @@ type dbConfig struct {
 
 var ServerConfig serverConfig
 
-var MongoConfig dbConfig
+var MysqlConfig dbConfig
 
 
 func initServer(){
 
-	log.Printf("init server now...")
+	log.Println("init server now...")
 	ServerConfig = serverConfig{
 		Env:"dev",
-		LogFile:"",
+		LogFile:"./goweb.log",
 	}
 }
 
-func initMongo()  {
-	log.Println("init mongo...")
+func initMysql()  {
+	log.Println("init mysql...")
 
-	MongoConfig = dbConfig{
-		URL:"",
-		UserName:"",
-		Password:"",
-		Host:"",
-		Port:"",
-		Dialect:"",
-		Database:"",
+	MysqlConfig = dbConfig{
+		URL:"root:shine@tcp(localhost:3306)/test?charset=utf8",
+		UserName:"root",
+		Password:"shine",
+		Host:"localhost",
+		Port:"3306",
+		Dialect:"mysql",
+		Database:"test",
 	}
 
 }
 
 func init() {
 	initServer()
-	initMongo()
+	initMysql()
 }

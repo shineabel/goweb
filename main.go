@@ -1,7 +1,6 @@
 package main
 
 import (
-	_ "github.com/goweb/config"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/goweb/config"
@@ -9,6 +8,7 @@ import (
 	"log"
 	"io"
 	"github.com/goweb/router"
+	_ "github.com/goweb/db"
 )
 func main() {
 
