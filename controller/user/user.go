@@ -57,5 +57,16 @@ func GetUserById( c *gin.Context)  {
 		"result":u,
 		"count":1,
 	})
+	}
 
+func DeleteUserById(c *gin.Context)  {
+	id := c.Param("id")
+	var u model.User
+
+	if err := db.DB.Where(" id = ?", id).Delete(&u).Error; err != nil {
+		fmt.Println("delete user by id error")
+	}
+	c.JSON(http.StatusOK,gin.H{
+		"count":1,
+	})
 }
