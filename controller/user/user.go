@@ -26,13 +26,14 @@ func Save(c *gin.Context)  {
 	}
 	u.Name = name
 	u.Password = pwd
+	u.Email = email
 
 	if err := db.DB.Create(&u).Error; err != nil {
 		fmt.Errorf("insert user error",err)
 		return
 	}
 	go func() {
-		sendEmail(email, "New user active","please active your account")
+		sendEmail(email, "New user active","<a href='http://localhost:8081/user/active'>please active your account</a>")
 	}()
 
 	c.JSON(http.StatusOK,gin.H{
