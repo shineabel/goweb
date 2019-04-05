@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ws test</title>
+    <script>
+        let ws = new WebSocket("ws://localhost:8081/ws/");
+        ws.onopen = function(evt) {
+            console.log("Connection open ...");
+            setInterval(function () {
+                ws.send("Hello WebSockets!" + new Date().getTime());
+            },2000)
+        };
+        ws.onmessage = function(evt) {
+            console.log("Received Message: " + evt.data);
+        };
+        ws.onclose = function(evt) {
+            console.log("Connection closed.");
+        };
+
+    </script>
+</head>
+<body>
+
+Hello websocket!
+</body>
+</html>
