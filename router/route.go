@@ -15,4 +15,9 @@ func Route(r *gin.Engine)  {
 		e.GET("/:id", user.GetUserById)
 		e.DELETE("/:id", user.DeleteUserById)
 	}
+	e2 := r.Group("/active")
+	{
+
+		e2.GET("/:name", user.ActiveUser)
+	}
 }
