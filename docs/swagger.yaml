@@ -1,0 +1,29 @@
+basePath: '{{.BasePath}}'
+host: '{{.Host}}'
+info:
+  contact: {}
+  description: '{{.Description}}'
+  license: {}
+  title: '{{.Title}}'
+  version: '{{.Version}}'
+paths:
+  /user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get use by id
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"result":{},"count":"1"}'
+          schema:
+            type: string
+      summary: get user by id
+swagger: "2.0"

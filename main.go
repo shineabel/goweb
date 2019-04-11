@@ -10,6 +10,9 @@ import (
 	"github.com/goweb/router"
 	_ "github.com/goweb/db"
 	"github.com/goweb/middleware"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+	_ "github.com/goweb/docs"
 )
 func main() {
 
@@ -28,6 +31,9 @@ func main() {
 	}
 
 	app := gin.New()
+
+
+	app.GET("/swagger/*any",ginSwagger.WrapHandler(swaggerFiles.Handler))
 	app.Use(gin.Logger())
 	app.Use(gin.Recovery())
 	app.Use(middleware.Auth)

@@ -1,0 +1,8 @@
+syntax = "proto3";
+package hello;
+
+message Test {
+  string label = 1;
+  int32 type = 2;
+  int64 reps = 3;
+}

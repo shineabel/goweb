@@ -86,6 +86,14 @@ func GetUserList(c *gin.Context)  {
 	})
 }
 
+
+// @Summary get user by id
+// @Description get use by id
+// @Accept  json
+// @Produce  json
+// @Param   id     path    int     true        "user id"
+// @Success 200 {string} json "{"result":{},"count":"1"}"
+// @Router /user/{id} [get]
 func GetUserById( c *gin.Context)  {
 	id := c.Param("id")
 	var u model.User
